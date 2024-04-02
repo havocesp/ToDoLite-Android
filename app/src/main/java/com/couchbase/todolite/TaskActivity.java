@@ -46,6 +46,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -333,7 +334,7 @@ public class TaskActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String fileName = "TODO_LITE-" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(fileName, ".jpg", storageDir);
+        File image = Files.createTempFile(storageDir.toPath(), fileName, ".jpg").toFile();
         mImagePathToBeAttached = image.getAbsolutePath();
         return image;
     }
